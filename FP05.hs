@@ -21,7 +21,7 @@ repos name = do
   initReq <- parseUrl $ "https://api.github.com/users/" ++ name ++ "/repos"
   let req = initReq { requestHeaders = [("User-Agent", "FP-Catchup")] }
   res <- withManager $ httpLbs req
-  return $ eitherDecode $ responseBody res
+  return . eitherDecode $ responseBody res
 
 main :: IO ()
 main = do

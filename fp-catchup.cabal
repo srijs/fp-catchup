@@ -44,3 +44,17 @@ executable FP05
                        http-conduit >= 2.1
   -- hs-source-dirs:      
   default-language:    Haskell2010
+
+executable FP06
+  main-is:             FP06.hs
+  build-depends:       base >=4.7,
+                       aeson >= 0.9,
+                       bytestring >= 0.10,
+                       time >= 1.4,
+                       text >= 1.2,
+                       http-types >=0.8,
+                       http-conduit >= 2.1,
+                       wai >=3.0,
+                       warp >=3.0
+  -- hs-source-dirs:      
+  default-language:    Haskell2010

@@ -1,4 +1,4 @@
-module Monoid where
+module FP02 where
 
 import Data.Monoid (Monoid, mempty, mappend)
 

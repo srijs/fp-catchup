@@ -1,4 +1,4 @@
-module Quicksort where
+module FP01 where
 
 qs :: [Int] -> [Int]
 qs []     = []

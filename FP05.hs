@@ -25,7 +25,8 @@ repos name = do
 
 main :: IO ()
 main = do
-  rs <- repos "srijs"
+  name <- getLine
+  rs <- repos name
   case rs of
     Left err -> putStrLn err
     Right rs'  -> mapM_ print $ take 5 rs'

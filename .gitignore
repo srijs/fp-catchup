@@ -1,0 +1,4 @@
+.idea
+dist
+.cabal*
+cabal.sandbox.config

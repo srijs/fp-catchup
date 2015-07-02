@@ -10,23 +10,22 @@ import GHC.Generics
 data Repo = Repo
   { name :: Text
   , description :: Text
-  , created_at :: UTCTime
   , language :: Maybe Text
   } deriving (Show, Generic)
 
+instance ToJSON Repo
 instance FromJSON Repo
 
-repos :: String -> IO (Either String [Repo])
-repos name = do
-  initReq <- parseUrl $ "https://api.github.com/users/" ++ name ++ "/repos"
+repo :: IO (Either String Repo)
+repo = do
+  initReq <- parseUrl $ "https://api.bitbucket.org/2.0/repositories/jwesleysmith/aws-scala"
   let req = initReq { requestHeaders = [("User-Agent", "FP-Catchup")] }
   res <- withManager $ httpLbs req
   return . eitherDecode $ responseBody res
 
 main :: IO ()
 main = do
-  name <- getLine
-  rs <- repos name
-  case rs of
+  r <- repo
+  case r of
     Left err -> putStrLn err
-    Right rs'  -> mapM_ print $ take 5 rs'
+    Right r'  -> print r'

@@ -11,6 +11,7 @@ greeting s = "Hello, " ++ s ++ "!"
 -- (.)      :: (b -> c) -> (a -> b) -> a -> c
 -- (>>=)    :: Monad m => m a -> (a -> m b) -> m b
 -- return   :: Monad m => a -> m a
+-- const    :: a -> b -> a
 
 main :: IO Int
 main = undefined

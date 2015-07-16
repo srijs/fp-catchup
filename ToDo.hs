@@ -10,7 +10,9 @@ data Item = Item Int String
 instance Ord Item where
   compare (Item a _) (Item b _) = compare a b
 
-data Command = Insert String Int | Delete String Int | Quit
+data Command = Insert String Int
+             | Delete String Int
+             | Quit
   deriving (Read)
 
 takeCommand :: InputT IO Command

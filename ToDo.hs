@@ -4,14 +4,14 @@ import Data.List
 
 import System.Console.Haskeline
 
-data Item = Item Int String
+data Item = Item String
   deriving (Eq, Show, Read)
 
 instance Ord Item where
-  compare (Item a _) (Item b _) = compare a b
+  compare (Item _) (Item _) = undefined
 
-data Command = Insert String Int
-             | Delete String Int
+data Command = Insert String
+             | Delete String
              | Quit
   deriving (Read)
 
@@ -24,8 +24,8 @@ takeCommand = do
 
 outputItems :: [Item] -> InputT IO ()
 outputItems [] = outputStrLn "-- end of list --"
-outputItems (Item prio title : items) = do
-  outputStrLn (show prio ++ ": " ++ title)
+outputItems (Item title : items) = do
+  outputStrLn (show title)
   outputItems items
 
 loop :: [Item] -> InputT IO ()
@@ -34,9 +34,14 @@ loop items = do
   outputItems items
   cmd <- takeCommand
   case cmd of
-    Insert text prio -> loop (insert (Item prio text) items)
-    Delete text prio -> loop (delete (Item prio text) items)
+    Insert text -> loop (items ++ [Item text])
+    Delete text -> loop (delete (Item text) items)
     Quit -> return ()
+
+-- Tasks:
+-- 1. Implement priorities for items
+-- 2. Implement a comamnd "Maximum", that gives you the highest-prio item
+-- 3. Implement a command "Move String Int Int", that moves an item from a position to another
 
 main :: IO ()
 main = runInputT defaultSettings (loop [])

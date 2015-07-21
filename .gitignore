@@ -1,4 +1,4 @@
-.idea
-dist
-.cabal*
-cabal.sandbox.config
+/.idea/
+/dist/
+/.cabal*
+/cabal.sandbox.config

@@ -44,4 +44,6 @@ loop items = do
 -- 3. Implement a command "Move String Int Int", that moves an item from a position to another
 
 main :: IO ()
-main = runInputT defaultSettings (loop [])
+main = runInputT (defaultSettings {
+  historyFile = Just "./hist"
+  }) (loop [])
